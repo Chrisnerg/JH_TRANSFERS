@@ -105,22 +105,22 @@ export function Home() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 lg:items-start">
             <div className="text-white space-y-6 lg:pt-12">
-              <h1 className="text-5xl lg:text-6xl leading-tight">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl leading-tight">
                 Across <span className="text-teal-400">South Africa</span> and beyond
               </h1>
-              <p className="text-xl text-gray-200">
+              <p className="text-lg sm:text-xl text-gray-200">
                 Safe, comfortable, hassle-free airport transfers and tour services throughout South Africa
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link
                   to="/contact"
-                  className="bg-teal-600 text-white px-8 py-3 rounded-md hover:bg-teal-700 transition-colors text-lg"
+                  className="bg-teal-600 text-white px-6 sm:px-8 py-3 rounded-md hover:bg-teal-700 transition-colors text-base sm:text-lg"
                 >
                   Get a Quote
                 </Link>
                 <Link
                   to="/services"
-                  className="border-2 border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-gray-900 transition-colors text-lg"
+                  className="border-2 border-white text-white px-6 sm:px-8 py-3 rounded-md hover:bg-white hover:text-gray-900 transition-colors text-base sm:text-lg"
                 >
                   Our Services
                 </Link>

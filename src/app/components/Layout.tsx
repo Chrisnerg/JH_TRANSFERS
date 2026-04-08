@@ -1,9 +1,15 @@
+import { useEffect, useState } from "react";
 import { Outlet, Link, useLocation } from "react-router";
-import { Phone, Mail, MessageCircle } from "lucide-react";
+import { Phone, Mail, MessageCircle, Menu, X } from "lucide-react";
 import { BrandLogo } from "./BrandLogo";
 
 export function Layout() {
   const location = useLocation();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
 
   const isActive = (path: string) => {
     if (path === "/") {
@@ -16,19 +22,24 @@ export function Layout() {
     <div className="min-h-screen flex flex-col">
       {/* Top Bar */}
       <div className="bg-teal-600 text-white py-2">
-        <div className="container mx-auto px-4 flex flex-wrap justify-between items-center text-sm">
-          <div className="flex flex-wrap gap-4">
+        <div className="container mx-auto px-4 text-xs sm:text-sm">
+          <div className="flex flex-wrap items-center justify-center sm:justify-between gap-2 sm:gap-4">
             <a href="tel:+27123456789" className="flex items-center gap-2 hover:text-teal-100">
               <Phone className="h-4 w-4" />
               <span>+27 (0) 12 345 6789</span>
             </a>
+
             <a href="https://wa.me/27123456789" className="flex items-center gap-2 hover:text-teal-100">
               <MessageCircle className="h-4 w-4" />
               <span>WhatsApp</span>
             </a>
-            <a href="mailto:info@shuttleservice.co.za" className="flex items-center gap-2 hover:text-teal-100">
+
+            <a
+              href="mailto:info@shuttleservice.co.za"
+              className="w-full sm:w-auto flex items-center justify-center sm:justify-start gap-2 hover:text-teal-100"
+            >
               <Mail className="h-4 w-4" />
-              <span>info@shuttleservice.co.za</span>
+              <span className="truncate">info@shuttleservice.co.za</span>
             </a>
           </div>
         </div>
@@ -38,7 +49,7 @@ export function Layout() {
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
-            <Link to="/" className="flex items-center">
+            <Link to="/" className="flex items-center" aria-label="Go to home page">
               <BrandLogo variant="full" />
             </Link>
 
@@ -83,14 +94,54 @@ export function Layout() {
               </Link>
             </nav>
 
-            {/* Mobile Menu Button */}
-            <button className="md:hidden text-gray-700">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+            <button
+              className="md:hidden text-gray-700"
+              type="button"
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileMenuOpen}
+              onClick={() => setMobileMenuOpen((prev) => !prev)}
+            >
+              {mobileMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
             </button>
           </div>
         </div>
+
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t border-gray-200 bg-white shadow-md">
+            <nav className="container mx-auto px-4 py-4 flex flex-col gap-3">
+              <Link
+                to="/"
+                className={`py-1 ${isActive("/") ? "text-teal-600 font-semibold" : "text-gray-700"}`}
+              >
+                Home
+              </Link>
+              <Link
+                to="/services"
+                className={`py-1 ${isActive("/services") ? "text-teal-600 font-semibold" : "text-gray-700"}`}
+              >
+                Services
+              </Link>
+              <Link
+                to="/about"
+                className={`py-1 ${isActive("/about") ? "text-teal-600 font-semibold" : "text-gray-700"}`}
+              >
+                About
+              </Link>
+              <Link
+                to="/contact"
+                className={`py-1 ${isActive("/contact") ? "text-teal-600 font-semibold" : "text-gray-700"}`}
+              >
+                Contact
+              </Link>
+              <Link
+                to="/contact"
+                className="mt-1 inline-flex justify-center bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-700 transition-colors"
+              >
+                Get a Quote
+              </Link>
+            </nav>
+          </div>
+        )}
       </header>
 
       <main className="flex-1">

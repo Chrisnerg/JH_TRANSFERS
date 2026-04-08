@@ -31,7 +31,12 @@ export function BrandLogo({
 
   return (
     <div className={`inline-flex ${className}`.trim()}>
-      <svg viewBox="0 0 430 100" className="h-14 w-[300px]" role="img" aria-label="JH Transfers logo">
+      <svg
+        viewBox="0 0 430 100"
+        className="h-10 w-[210px] sm:h-14 sm:w-[300px]"
+        role="img"
+        aria-label="JH Transfers logo"
+      >
         <text x="28" y="66" fontSize="74" fontWeight="800" fill={textColor} letterSpacing="0.5">
           JH
         </text>
