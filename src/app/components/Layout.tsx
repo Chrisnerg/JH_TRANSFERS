@@ -49,6 +49,16 @@ export function Layout() {
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
+            <button
+              className="md:hidden text-gray-700"
+              type="button"
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileMenuOpen}
+              onClick={() => setMobileMenuOpen((prev) => !prev)}
+            >
+              {mobileMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
+            </button>
+
             <Link to="/" className="flex items-center" aria-label="Go to home page">
               <BrandLogo variant="full" />
             </Link>
@@ -94,15 +104,7 @@ export function Layout() {
               </Link>
             </nav>
 
-            <button
-              className="md:hidden text-gray-700"
-              type="button"
-              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-              aria-expanded={mobileMenuOpen}
-              onClick={() => setMobileMenuOpen((prev) => !prev)}
-            >
-              {mobileMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
-            </button>
+            <div className="md:hidden w-7" aria-hidden="true"></div>
           </div>
         </div>
 
